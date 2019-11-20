@@ -25,10 +25,8 @@ class AnalyticsCounterTest {
         symptomsExpected.add(new Symptom("symptomB",1));
         symptomsExpected.add(new Symptom("symptomC",3));
 
-        List<Symptom> symptomsObtained = new ArrayList<Symptom>();
-
         AnalyticsCounter analytics = new AnalyticsCounter();
-        analytics.createSymptomList(symptomNames);
+        List<Symptom> symptomsObtained = analytics.createSymptomList(symptomNames);
 
         assertTrue(symptomsExpected.equals(symptomsObtained));
 

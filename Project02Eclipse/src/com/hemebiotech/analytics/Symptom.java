@@ -20,6 +20,19 @@ public class Symptom {
         this.occurrences++;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || !Symptom.class.isAssignableFrom(obj.getClass()))
+            return false;
+
+        final Symptom otherSymptom = (Symptom)obj;
+
+        if(this.getName() == otherSymptom.getName() && this.getOccurrences() == otherSymptom.getOccurrences())
+            return true;
+        else
+            return false;
+    }
+
     /*
     ============================================================ GETTERS
      */

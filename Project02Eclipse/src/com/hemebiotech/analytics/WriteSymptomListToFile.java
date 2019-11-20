@@ -6,6 +6,7 @@ import java.util.List;
 public class WriteSymptomListToFile implements ISymptomWriter {
     @Override
     public boolean writeSymptomList(List<Symptom> symptomList)  {
+        //TODO
         return false;
     }
 }

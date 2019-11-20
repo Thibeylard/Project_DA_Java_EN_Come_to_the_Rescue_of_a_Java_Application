@@ -21,7 +21,7 @@ class WriteSymptomListToFileTest {
         symptomList.add(new Symptom("symptomC",3));
 
         WriteSymptomListToFile writer = new WriteSymptomListToFile();
-        writer.writeSymptomList(symptomList);
+        assertTrue(writer.writeSymptomList(symptomList));
 
         List<String> symptomFileWrittenLine = new ArrayList<String>();
 
