@@ -1,14 +1,36 @@
+import com.hemebiotech.analytics.AnalyticsCounter;
+import com.hemebiotech.analytics.Symptom;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AnalyticsCounterTest {
 
-    @Test
-    void main() {
-    }
 
     @Test
-    void createSymptomList() {
+    void Given_OrderedStringList_When_createSymptomList_Then_GetSymptomsListWithStringsAsNamesAndStringOccurrencesAsOccurrences() {
+        List<String> symptomNames = new ArrayList<String>();
+        symptomNames.add("symptomA");
+        symptomNames.add("symptomA");
+        symptomNames.add("symptomB");
+        symptomNames.add("symptomC");
+        symptomNames.add("symptomC");
+        symptomNames.add("symptomC");
+
+        List<Symptom> symptomsExpected = new ArrayList<Symptom>();
+        symptomsExpected.add(new Symptom("symptomA",2));
+        symptomsExpected.add(new Symptom("symptomB",1));
+        symptomsExpected.add(new Symptom("symptomC",3));
+
+        List<Symptom> symptomsObtained = new ArrayList<Symptom>();
+
+        AnalyticsCounter analytics = new AnalyticsCounter();
+        analytics.createSymptomList(symptomNames);
+
+        assertTrue(symptomsExpected.equals(symptomsObtained));
+
     }
 }

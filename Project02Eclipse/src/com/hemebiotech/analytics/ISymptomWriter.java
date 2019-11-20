@@ -13,5 +13,5 @@ public interface ISymptomWriter {
      * @return true if write succeed
      * @throws IOException handle writing exceptions
      */
-    boolean writeSymptomList(List<Symptom> symptomList) throws IOException;
+    boolean writeSymptomList(List<Symptom> symptomList);
 }
