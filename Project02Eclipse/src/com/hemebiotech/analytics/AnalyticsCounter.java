@@ -1,19 +1,16 @@
 package com.hemebiotech.analytics;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
 
 public class AnalyticsCounter {
 
 	public static void main(String args[]) throws Exception {
 		ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("symptoms.txt");
 		WriteSymptomListToFile writer = new WriteSymptomListToFile();
-		AnalyticsCounter counter = new AnalyticsCounter();
 
 		List<String> symptomNames = reader.GetSymptoms();
-		List<Symptom> symptomList = counter.createSymptomList(symptomNames);
+		Collections.sort(symptomNames);
+		List<Symptom> symptomList = AnalyticsCounter.createSymptomList(symptomNames);
 
 		if(writer.writeSymptomList(symptomList))
 			System.out.println("Processus de comptage des symptômes terminé.");
@@ -26,16 +23,16 @@ public class AnalyticsCounter {
 	 * @param symptomNamesList A list of symptoms names Strings
 	 * @return A list of identified Symptoms from symptomNamesList
 	 */
-	public List<Symptom> createSymptomList(List<String> symptomNamesList){
-		String symptonName = "", newSymptomName = "";
+	public static List<Symptom> createSymptomList(List<String> symptomNamesList){
+		String symptonName, previousSymptomName = "";
 		Symptom currSympton = null;
 		List<Symptom> symptomList = new ArrayList<Symptom>();
 		ListIterator<String> symptomNameIterator = symptomNamesList.listIterator();
 
 		while(symptomNameIterator.hasNext()){
 			symptonName = symptomNameIterator.next();
-			if(symptonName != newSymptomName){
-				newSymptomName = symptonName;
+			if(!symptonName.equals(previousSymptomName)){
+				previousSymptomName = symptonName;
 				currSympton = new Symptom(symptonName,1);
 				symptomList.add(currSympton);
 			} else {
