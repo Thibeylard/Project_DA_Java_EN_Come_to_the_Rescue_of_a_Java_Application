@@ -30,7 +30,7 @@ class WriteSymptomListToFileTest {
             String line = reader.readLine();
 
             while (line != null) {
-                symptomFileWrittenLine.add(line);
+                symptomFileWrittenLine.add(line.replace("\n",""));
                 line = reader.readLine();
             }
             reader.close();
@@ -38,9 +38,9 @@ class WriteSymptomListToFileTest {
             e.printStackTrace();
         }
 
-        assertTrue(symptomFileWrittenLine.get(0).equals("symptomA: 2"));
-        assertTrue(symptomFileWrittenLine.get(1).equals("symptomB: 1"));
-        assertTrue(symptomFileWrittenLine.get(2).equals("symptomC: 3"));
+        assertTrue(symptomFileWrittenLine.get(0).equals(symptomList.get(0).toString()));
+        assertTrue(symptomFileWrittenLine.get(1).equals(symptomList.get(1).toString()));
+        assertTrue(symptomFileWrittenLine.get(2).equals(symptomList.get(2).toString()));
 
     }
 }
