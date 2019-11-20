@@ -28,7 +28,9 @@ class AnalyticsCounterTest {
         AnalyticsCounter analytics = new AnalyticsCounter();
         List<Symptom> symptomsObtained = analytics.createSymptomList(symptomNames);
 
+        assertEquals(3,symptomsObtained.size());
         assertTrue(symptomsExpected.equals(symptomsObtained));
+        assertTrue(symptomNames.isEmpty());
 
     }
 }
