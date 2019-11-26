@@ -21,14 +21,14 @@ class AnalyticsCounterTest {
         symptomNames.add("symptomC");
 
         List<Symptom> symptomsExpected = new ArrayList<Symptom>();
-        symptomsExpected.add(new Symptom("symptomA",2));
-        symptomsExpected.add(new Symptom("symptomB",1));
-        symptomsExpected.add(new Symptom("symptomC",3));
+        symptomsExpected.add(new Symptom("symptomA", 2));
+        symptomsExpected.add(new Symptom("symptomB", 1));
+        symptomsExpected.add(new Symptom("symptomC", 3));
 
         AnalyticsCounter analytics = new AnalyticsCounter();
         List<Symptom> symptomsObtained = analytics.createSymptomList(symptomNames);
 
-        assertEquals(3,symptomsObtained.size());
+        assertEquals(3, symptomsObtained.size());
         assertTrue(symptomsExpected.equals(symptomsObtained));
         assertTrue(symptomNames.isEmpty());
 

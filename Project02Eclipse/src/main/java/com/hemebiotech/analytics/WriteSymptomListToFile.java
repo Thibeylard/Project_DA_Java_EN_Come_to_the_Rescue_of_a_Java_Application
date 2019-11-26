@@ -12,21 +12,21 @@ public class WriteSymptomListToFile implements ISymptomWriter {
      * @see ISymptomWriter
      */
     @Override
-    public boolean writeSymptomList(List<Symptom> symptomList)  {
+    public boolean writeSymptomList(List<Symptom> symptomList) {
 
-        if(symptomList.isEmpty())
+        if (symptomList.isEmpty())
             return false;
 
-        try{
+        try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("results.out"));
             ListIterator<Symptom> symptomListIterator = symptomList.listIterator();
 
-            while(symptomListIterator.hasNext())
+            while (symptomListIterator.hasNext())
                 writer.write(symptomListIterator.next().toString() + "\n");
 
             writer.close();
             return true;
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
             return false;
         }

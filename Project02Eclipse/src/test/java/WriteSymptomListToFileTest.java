@@ -15,9 +15,9 @@ class WriteSymptomListToFileTest {
     @Test
     void Given_OrderedSymptomList_When_writeSymptomListToFile_Then_GetFormattedFileTextWithEachSymptomsAndOccurrences() {
         List<Symptom> symptomList = new ArrayList<Symptom>();
-        symptomList.add(new Symptom("symptomA",2));
-        symptomList.add(new Symptom("symptomB",1));
-        symptomList.add(new Symptom("symptomC",3));
+        symptomList.add(new Symptom("symptomA", 2));
+        symptomList.add(new Symptom("symptomB", 1));
+        symptomList.add(new Symptom("symptomC", 3));
 
         WriteSymptomListToFile writer = new WriteSymptomListToFile();
         assertTrue(writer.writeSymptomList(symptomList));
@@ -25,11 +25,11 @@ class WriteSymptomListToFileTest {
         List<String> symptomFileWrittenLine = new ArrayList<String>();
 
         try {
-            BufferedReader reader = new BufferedReader (new FileReader("results.out"));
+            BufferedReader reader = new BufferedReader(new FileReader("results.out"));
             String line = reader.readLine();
 
             while (line != null) {
-                symptomFileWrittenLine.add(line.replace("\n",""));
+                symptomFileWrittenLine.add(line.replace("\n", ""));
                 line = reader.readLine();
             }
             reader.close();
