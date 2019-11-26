@@ -1,5 +1,5 @@
-import com.hemebiotech.analytics.AnalyticsCounter;
-import com.hemebiotech.analytics.Symptom;
+import main.java.com.hemebiotech.analytics.AnalyticsCounter;
+import main.java.com.hemebiotech.analytics.Symptom;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
