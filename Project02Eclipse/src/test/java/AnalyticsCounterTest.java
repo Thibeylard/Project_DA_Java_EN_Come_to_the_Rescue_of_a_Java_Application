@@ -1,6 +1,6 @@
 import main.java.com.hemebiotech.analytics.AnalyticsCounter;
 import main.java.com.hemebiotech.analytics.Symptom;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,11 +26,9 @@ class AnalyticsCounterTest {
         symptomsExpected.add(new Symptom("symptomC", 3));
 
         AnalyticsCounter analytics = new AnalyticsCounter();
-        List<Symptom> symptomsObtained = analytics.createSymptomList(symptomNames);
+        analytics.initiateSymptomList(symptomNames);
 
-        assertEquals(3, symptomsObtained.size());
-        assertTrue(symptomsExpected.equals(symptomsObtained));
-        assertTrue(symptomNames.isEmpty());
-
+        assertEquals(3, analytics.getSymptomList().size());
+        assertTrue(symptomsExpected.equals(analytics.getSymptomList()));
     }
 }

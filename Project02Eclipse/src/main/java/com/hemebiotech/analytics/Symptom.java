@@ -3,7 +3,7 @@ package main.java.com.hemebiotech.analytics;
 public class Symptom {
 
     private String name;
-    private int occurrences;
+    private int occurrences = 0;
 
     public Symptom(String name) {
         this.name = name;
@@ -16,8 +16,8 @@ public class Symptom {
         this.occurrences = occurrences;
     }
 
-    public void incrementOccurrences() {
-        this.occurrences++;
+    public void addOccurrences(int nbOccurences) {
+        this.occurrences += nbOccurences;
     }
 
     @Override
