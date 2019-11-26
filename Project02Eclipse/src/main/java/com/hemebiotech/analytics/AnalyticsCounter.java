@@ -5,20 +5,30 @@ import java.util.stream.Stream;
 
 public class AnalyticsCounter {
 
-    List<Symptom> symptomList = new ArrayList<Symptom>();
+    private List<Symptom> symptomList;
+    private ISymptomReader reader;
+    private ISymptomWriter writer;
+
+    public AnalyticsCounter() {
+        this.symptomList = new ArrayList<Symptom>();
+    }
+
+    public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+        this.symptomList = new ArrayList<Symptom>();
+        this.reader = reader;
+        this.writer = writer;
+    }
 
     /**
      * Key method : From symptoms.txt file, write results.out which lists symptoms types and their occurrences.
      */
     public static void main(String args[]) {
-        ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("symptoms.txt");
-        WriteSymptomListToFile writer = new WriteSymptomListToFile();
-        AnalyticsCounter analytics = new AnalyticsCounter();
+        AnalyticsCounter analytics = new AnalyticsCounter(new ReadSymptomDataFromFile("symptoms.txt"), new WriteSymptomListToFile());
 
-        List<String> symptomNames = reader.GetSymptoms();
+        List<String> symptomNames = analytics.getReader().GetSymptoms();
         analytics.initiateSymptomList(symptomNames);
 
-        if (writer.writeSymptomList(analytics.getSymptomList()))
+        if (analytics.getWriter().writeSymptomList(analytics.getSymptomList()))
             System.out.println("Processus de comptage des symptômes terminé.");
         else
             System.out.println("Une erreur s'est produite. Le fichier results.out n'a pas pu être crée.");
@@ -42,5 +52,13 @@ public class AnalyticsCounter {
 
     public List<Symptom> getSymptomList() {
         return this.symptomList;
+    }
+
+    public ISymptomReader getReader() {
+        return reader;
+    }
+
+    public ISymptomWriter getWriter() {
+        return writer;
     }
 }
