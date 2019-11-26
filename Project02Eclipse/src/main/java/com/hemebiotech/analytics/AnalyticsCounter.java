@@ -1,51 +1,64 @@
 package main.java.com.hemebiotech.analytics;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class AnalyticsCounter {
+
+    List<Symptom> symptomList;
+    ISymptomReader reader;
+    ISymptomWriter writer;
+
+    public AnalyticsCounter() {
+        this.symptomList = new ArrayList<Symptom>();
+    }
+
+    public AnalyticsCounter(ISymptomReader reader, ISymptomWriter writer) {
+        this.symptomList = new ArrayList<Symptom>();
+        this.reader = reader;
+        this.writer = writer;
+    }
 
     /**
      * Key method : From symptoms.txt file, write results.out which lists symptoms types and their occurrences.
      */
     public static void main(String args[]) {
-        ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("symptoms.txt");
-        WriteSymptomListToFile writer = new WriteSymptomListToFile();
+        AnalyticsCounter analytics = new AnalyticsCounter(new ReadSymptomDataFromFile("symptoms.txt"), new WriteSymptomListToFile());
 
-        List<String> symptomNames = reader.getSymptoms();
-        Collections.sort(symptomNames);
-        List<Symptom> symptomList = AnalyticsCounter.createSymptomList(symptomNames);
+        List<String> symptomNames = analytics.getReader().getSymptoms();
+        analytics.initiateSymptomList(symptomNames);
 
-        if (writer.writeSymptomList(symptomList))
+        if (analytics.getWriter().writeSymptomList(analytics.getSymptomList()))
             System.out.println("Processus de comptage des symptômes terminé.");
         else
             System.out.println("Une erreur s'est produite. Le fichier results.out n'a pas pu être crée.");
     }
 
     /**
-     * From an ordered List<String> of symptom names, create a List<Symptom> with no duplication.
+     * From an List<String> of symptom names, create a List<Symptom> with no duplication.
      *
-     * @param symptomNamesList An ordered List<String> corresponding to symptoms names
+     * @param symptomNamesList A List<String> corresponding to symptoms names
      * @return A list of identified Symptoms from symptomNamesList
      */
-    public static List<Symptom> createSymptomList(List<String> symptomNamesList) {
-        String symptonName, previousSymptomName = "";
-        Symptom currSympton = null;
-        List<Symptom> symptomList = new ArrayList<Symptom>();
-        ListIterator<String> symptomNameIterator = symptomNamesList.listIterator();
+    public void initiateSymptomList(List<String> symptomNamesList) {
+        Stream<String> symptomStream = symptomNamesList.stream();
+        symptomStream.distinct().forEach((x) -> this.symptomList.add(new Symptom((x))));
 
-        // Loop processing at the same time Symptoms creation and counting.
-        while (symptomNameIterator.hasNext()) {
-            symptonName = symptomNameIterator.next();
-            if (!symptonName.equals(previousSymptomName)) { // = New symptom identified
-                previousSymptomName = symptonName;
-                currSympton = new Symptom(symptonName, 1);
-                symptomList.add(currSympton);
-            } else { // Same symptom : add occurrence.
-                currSympton.incrementOccurrences();
-            }
-            symptomNameIterator.remove(); // Retrieved symptomName is removed.
+        for (Symptom symptom : this.symptomList) {
+            symptomStream = symptomNamesList.stream();
+            symptom.addOccurrences((int) symptomStream.filter((x) -> x == symptom.getName()).count());
         }
+    }
 
-        return symptomList;
+    public List<Symptom> getSymptomList() {
+        return this.symptomList;
+    }
+
+    public ISymptomReader getReader() {
+        return reader;
+    }
+
+    public ISymptomWriter getWriter() {
+        return writer;
     }
 }

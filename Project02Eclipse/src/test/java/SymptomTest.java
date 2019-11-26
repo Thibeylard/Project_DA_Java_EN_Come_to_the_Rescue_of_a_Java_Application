@@ -8,7 +8,7 @@ class SymptomTest {
     @Test
     void Given_SymptomWithOneOccurrence_When_incrementSymptomOccurrence_Then_SymptomOccurrenceIncreasedByOne() {
         Symptom s = new Symptom("symptomA", 1);
-        s.incrementOccurrences();
-        assertEquals(2, s.getOccurrences());
+        s.addOccurrences(3);
+        assertEquals(4, s.getOccurrences());
     }
 }
