@@ -5,9 +5,9 @@ import java.util.stream.Stream;
 
 public class AnalyticsCounter {
 
-    List<Symptom> symptomList;
-    ISymptomReader reader;
-    ISymptomWriter writer;
+    private List<Symptom> symptomList;
+    private ISymptomReader reader;
+    private ISymptomWriter writer;
 
     public AnalyticsCounter() {
         this.symptomList = new ArrayList<Symptom>();
