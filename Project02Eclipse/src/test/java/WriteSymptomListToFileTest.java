@@ -1,6 +1,5 @@
-import com.hemebiotech.analytics.ReadSymptomDataFromFile;
-import com.hemebiotech.analytics.Symptom;
-import com.hemebiotech.analytics.WriteSymptomListToFile;
+import main.java.com.hemebiotech.analytics.Symptom;
+import main.java.com.hemebiotech.analytics.WriteSymptomListToFile;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;

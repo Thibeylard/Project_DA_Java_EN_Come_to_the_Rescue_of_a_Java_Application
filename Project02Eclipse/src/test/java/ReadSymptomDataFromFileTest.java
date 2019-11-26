@@ -1,4 +1,4 @@
-import com.hemebiotech.analytics.ReadSymptomDataFromFile;
+import main.java.com.hemebiotech.analytics.ReadSymptomDataFromFile;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

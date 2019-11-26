@@ -1,4 +1,4 @@
-import com.hemebiotech.analytics.Symptom;
+import main.java.com.hemebiotech.analytics.Symptom;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
