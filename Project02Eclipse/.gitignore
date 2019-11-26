@@ -1,0 +1,6 @@
+# Default ignored files
+./out
+.idea/workspace.xml
+.idea/modules.xml
+.idea/uiDesigner.xml
+.idea/Project02Eclipse.iml
