@@ -20,7 +20,7 @@ class ReadSymptomDataFromFileTest {
         symptomsExpected.add("tremor");
         symptomsExpected.add("stomach pain");
 
-        List<String> symptoms = reader.GetSymptoms();
+        List<String> symptoms = reader.getSymptoms();
 
         assertTrue(symptomsExpected.equals(symptoms));
     }

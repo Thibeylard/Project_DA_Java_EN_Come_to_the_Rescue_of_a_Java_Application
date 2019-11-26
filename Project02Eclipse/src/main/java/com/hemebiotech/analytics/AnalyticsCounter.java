@@ -11,7 +11,7 @@ public class AnalyticsCounter {
         ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("symptoms.txt");
         WriteSymptomListToFile writer = new WriteSymptomListToFile();
 
-        List<String> symptomNames = reader.GetSymptoms();
+        List<String> symptomNames = reader.getSymptoms();
         Collections.sort(symptomNames);
         List<Symptom> symptomList = AnalyticsCounter.createSymptomList(symptomNames);
 
