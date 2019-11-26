@@ -1,3 +1,4 @@
+import main.java.com.hemebiotech.analytics.ISymptomReader;
 import main.java.com.hemebiotech.analytics.ReadSymptomDataFromFile;
 import org.junit.jupiter.api.Test;
 
@@ -10,7 +11,7 @@ class ReadSymptomDataFromFileTest {
 
     @Test
     void Given_symptomFile_When_ReadSymptomData_Then_createArrayListString() {
-        ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("symptomsSample.txt");
+        ISymptomReader reader = new ReadSymptomDataFromFile("symptomsSample.txt");
 
         List<String> symptomsExpected = new ArrayList<String>();
         symptomsExpected.add("fever");
