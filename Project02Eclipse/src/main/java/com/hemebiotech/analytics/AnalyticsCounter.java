@@ -20,7 +20,7 @@ public class AnalyticsCounter {
     }
 
     /**
-     * Key method : From symptoms.txt file, write results.out which lists symptoms types and their occurrences.
+     * Demonstration method : From symptoms.txt file, write results.out which lists symptoms types and their occurrences.
      */
     public static void main(String args[]) {
         AnalyticsCounter analytics = new AnalyticsCounter(new ReadSymptomDataFromFile("symptoms.txt"), new WriteSymptomListToFile());

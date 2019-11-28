@@ -3,7 +3,8 @@ package main.java.com.hemebiotech.analytics;
 import java.util.List;
 
 /**
- * Apply to every class that would want to write an ordered Symptom List to a file.
+ * Apply to every class that would want to write a Symptom List to a file.
+ * It is important that every ISymptomWriter receive a List<Symptom> as parameter
  */
 public interface ISymptomWriter {
     /**
