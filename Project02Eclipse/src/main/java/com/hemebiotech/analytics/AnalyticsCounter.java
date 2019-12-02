@@ -25,22 +25,18 @@ public class AnalyticsCounter {
     public static void main(String args[]) {
         AnalyticsCounter analytics = new AnalyticsCounter(new ReadSymptomDataFromFile("src/main/resources/symptoms.txt"), new WriteSymptomListToFile());
 
-        List<String> symptomNames = analytics.getReader().getSymptoms();
-        analytics.initiateSymptomList(symptomNames);
-
-        if (analytics.getWriter().writeSymptomList(analytics.getSymptomList()))
+        if (analytics.getWriter().writeSymptomList(analytics.countSymptoms()))
             System.out.println("Processus de comptage des symptômes terminé.");
         else
             System.out.println("Une erreur s'est produite. Le fichier results.out n'a pas pu être crée.");
     }
 
     /**
-     * From an List<String> of symptom names, create a List<Symptom> with no duplication.
-     *
-     * @param symptomNamesList A List<String> corresponding to symptoms names
-     * @return A list of identified Symptoms from symptomNamesList
+     * From its reader's returned List<String>, store according List<Symptom> with no duplication and return it.
+     * @return A list of identified Symptoms
      */
-    public void initiateSymptomList(List<String> symptomNamesList) {
+    public List<Symptom> countSymptoms() {
+        List<String> symptomNamesList = this.getReader().getSymptoms();
         Stream<String> symptomStream = symptomNamesList.stream();
         symptomStream.distinct().sorted().forEach((x) -> this.symptomList.add(new Symptom((x))));
 
@@ -48,6 +44,8 @@ public class AnalyticsCounter {
             symptomStream = symptomNamesList.stream();
             symptom.addOccurrences((int) symptomStream.filter((x) -> x.equals(symptom.getName())).count());
         }
+
+        return this.symptomList;
     }
 
     public List<Symptom> getSymptomList() {

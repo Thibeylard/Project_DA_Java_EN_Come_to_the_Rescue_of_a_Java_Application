@@ -25,8 +25,7 @@ class WriteSymptomListToFileTest {
 
         List<String> symptomFileWrittenLine = new ArrayList<String>();
 
-
-        BufferedReader reader = new BufferedReader(new FileReader("results.out"));
+        BufferedReader reader = new BufferedReader(new FileReader("src/main/resources/results.out"));
         String line = reader.readLine();
 
         while (line != null) {
