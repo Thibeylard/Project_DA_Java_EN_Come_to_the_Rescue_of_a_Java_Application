@@ -29,7 +29,7 @@ class AnalyticsCounterTest {
         analytics.initiateSymptomList(symptomNames);
 
         assertEquals(3, analytics.getSymptomList().size());
-        assertTrue(symptomsExpected.equals(analytics.getSymptomList()));
+        assertEquals(symptomsExpected, analytics.getSymptomList());
     }
 
     @Test
@@ -57,6 +57,9 @@ class AnalyticsCounterTest {
                     break;
                 case "symptomC" :
                     assertEquals(3, symptom.getOccurrences());
+                    break;
+                default :
+                    fail();
                     break;
             }
         }

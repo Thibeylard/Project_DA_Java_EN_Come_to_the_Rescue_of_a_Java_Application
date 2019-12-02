@@ -11,7 +11,7 @@ class ReadSymptomDataFromFileTest {
 
     @Test
     void Given_symptomFile_When_ReadSymptomData_Then_createArrayListString() {
-        ISymptomReader reader = new ReadSymptomDataFromFile("symptomsSample.txt");
+        ISymptomReader reader = new ReadSymptomDataFromFile("src/test/resources/symptomSamples.txt");
 
         List<String> symptomsExpected = new ArrayList<String>();
         symptomsExpected.add("fever");

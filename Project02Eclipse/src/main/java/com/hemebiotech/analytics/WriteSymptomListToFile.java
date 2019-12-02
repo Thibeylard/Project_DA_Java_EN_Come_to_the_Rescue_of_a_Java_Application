@@ -18,7 +18,7 @@ public class WriteSymptomListToFile implements ISymptomWriter {
             return false;
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("results.out"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/results.out"));
             ListIterator<Symptom> symptomListIterator = symptomList.listIterator();
 
             while (symptomListIterator.hasNext())

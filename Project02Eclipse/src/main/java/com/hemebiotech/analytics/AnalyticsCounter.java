@@ -23,7 +23,7 @@ public class AnalyticsCounter {
      * Demonstration method : From symptoms.txt file, write results.out which lists symptoms types and their occurrences.
      */
     public static void main(String args[]) {
-        AnalyticsCounter analytics = new AnalyticsCounter(new ReadSymptomDataFromFile("symptoms.txt"), new WriteSymptomListToFile());
+        AnalyticsCounter analytics = new AnalyticsCounter(new ReadSymptomDataFromFile("src/main/resources/symptoms.txt"), new WriteSymptomListToFile());
 
         List<String> symptomNames = analytics.getReader().getSymptoms();
         analytics.initiateSymptomList(symptomNames);
@@ -42,11 +42,11 @@ public class AnalyticsCounter {
      */
     public void initiateSymptomList(List<String> symptomNamesList) {
         Stream<String> symptomStream = symptomNamesList.stream();
-        symptomStream.distinct().forEach((x) -> this.symptomList.add(new Symptom((x))));
+        symptomStream.distinct().sorted().forEach((x) -> this.symptomList.add(new Symptom((x))));
 
         for (Symptom symptom : this.symptomList) {
             symptomStream = symptomNamesList.stream();
-            symptom.addOccurrences((int) symptomStream.filter((x) -> x == symptom.getName()).count());
+            symptom.addOccurrences((int) symptomStream.filter((x) -> x.equals(symptom.getName())).count());
         }
     }
 
